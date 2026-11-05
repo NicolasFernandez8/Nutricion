@@ -1,0 +1,6 @@
+{
+  "appId": "app.nutricion",
+  "appName": "Nutricion",
+  "webDir": "dist",
+  "android": { "allowMixedContent": true }
+}
