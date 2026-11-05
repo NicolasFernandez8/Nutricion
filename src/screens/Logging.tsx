@@ -281,21 +281,21 @@ export function ExerciseLog({ nav }: { nav: Nav }) {
     return (
       <Page title="Registrar ejercicio" onBack={nav.pop}>
         <div className="list">
-          <button className="card list-item big" onClick={() => setType('run')}>
+          <button className="card list-item lg" onClick={() => setType('run')}>
             <Footprints size={24} />
             <div className="grow left">
               <b>Correr</b>
               <small className="muted">Correr, caminar, trotar, etc.</small>
             </div>
           </button>
-          <button className="card list-item big" onClick={() => setType('weights')}>
+          <button className="card list-item lg" onClick={() => setType('weights')}>
             <Dumbbell size={24} />
             <div className="grow left">
               <b>Pesas</b>
               <small className="muted">Máquinas, peso libre, etc.</small>
             </div>
           </button>
-          <button className="card list-item big" onClick={() => setType('other')}>
+          <button className="card list-item lg" onClick={() => setType('other')}>
             <PenLine size={24} />
             <div className="grow left">
               <b>Otro / Describir</b>

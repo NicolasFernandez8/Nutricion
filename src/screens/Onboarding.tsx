@@ -215,7 +215,7 @@ export default function Onboarding() {
               <h3>Recomendación diaria</h3>
               <p className="muted small">Podés editarla cuando quieras en Ajustes.</p>
               <div className="plan-grid">
-                <PlanRing label="Calorías" value={plan.calories} unit="" color="var(--fg)" />
+                <PlanRing label="Calorías" value={plan.calories} unit="" color="var(--accent)" />
                 <PlanRing label="Carbohidratos" value={plan.carbs} unit="g" color={COLORS.carbs} />
                 <PlanRing label="Proteína" value={plan.protein} unit="g" color={COLORS.protein} />
                 <PlanRing label="Grasas" value={plan.fat} unit="g" color={COLORS.fat} />

@@ -8,7 +8,7 @@ function createWindow() {
     minWidth: 380,
     minHeight: 600,
     title: 'Nutricion',
-    backgroundColor: '#0f1412',
+    backgroundColor: '#140a12',
     autoHideMenuBar: true,
     icon: path.join(__dirname, '..', 'build', 'icon.png'),
     webPreferences: { contextIsolation: true, nodeIntegration: false },

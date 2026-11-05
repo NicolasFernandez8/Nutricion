@@ -161,7 +161,7 @@ function WeightChart({ data, goal }: { data: { date: string; kg: number }[]; goa
   const path = data.map((d, i) => `${i ? 'L' : 'M'}${x(d.date).toFixed(1)},${y(d.kg).toFixed(1)}`).join(' ');
   const ticks = [min, (min + max) / 2, max];
   return (
-    <svg className="chart" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" role="img" aria-label="Gráfico de peso">
+    <svg className="chart" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet" role="img" aria-label="Gráfico de peso">
       {ticks.map((t) => (
         <g key={t}>
           <line x1={P} x2={W - P} y1={y(t)} y2={y(t)} stroke="var(--line)" strokeDasharray="4 4" />
@@ -170,10 +170,10 @@ function WeightChart({ data, goal }: { data: { date: string; kg: number }[]; goa
           </text>
         </g>
       ))}
-      <line x1={P} x2={W - P} y1={y(goal)} y2={y(goal)} stroke="var(--accent)" strokeWidth={1.5} strokeDasharray="6 4" />
-      <path d={path} fill="none" stroke="var(--fg)" strokeWidth={2.5} strokeLinejoin="round" />
+      <line x1={P} x2={W - P} y1={y(goal)} y2={y(goal)} stroke="var(--ok)" strokeWidth={1.5} strokeDasharray="6 4" />
+      <path d={path} fill="none" stroke="var(--accent)" strokeWidth={2.5} strokeLinejoin="round" />
       {data.map((d) => (
-        <circle key={d.date} cx={x(d.date)} cy={y(d.kg)} r={3.5} fill="var(--fg)">
+        <circle key={d.date} cx={x(d.date)} cy={y(d.kg)} r={3.5} fill="var(--accent)">
           <title>
             {shortDate(d.date)}: {d.kg} kg
           </title>
@@ -202,9 +202,9 @@ function WeekBars({ data, target }: { data: { k: string; calories: number; prote
         return (
           <div className="bar-col" key={d.k} title={`${Math.round(d.calories)} kcal`}>
             <div className="bar-stack" style={{ height: `${h}%` }}>
-              <i style={{ flex: (d.fat * 9) / total, background: '#4a90e2' }} />
-              <i style={{ flex: (d.carbs * 4) / total, background: '#f5a623' }} />
-              <i style={{ flex: (d.protein * 4) / total, background: '#ff6b6b' }} />
+              <i style={{ flex: (d.fat * 9) / total, background: '#5ab8ff' }} />
+              <i style={{ flex: (d.carbs * 4) / total, background: '#f5b14c' }} />
+              <i style={{ flex: (d.protein * 4) / total, background: '#ff5c93' }} />
             </div>
             <span>{dayShort(d.k)}</span>
           </div>

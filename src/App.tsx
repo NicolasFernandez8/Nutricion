@@ -30,8 +30,15 @@ function Shell() {
   // tema
   useEffect(() => {
     const el = document.documentElement;
-    if (state.settings.theme === 'system') el.removeAttribute('data-theme');
-    else el.setAttribute('data-theme', state.settings.theme);
+    const mq = window.matchMedia('(prefers-color-scheme: light)');
+    const apply = () => {
+      const t = state.settings.theme === 'system' ? (mq.matches ? 'light' : 'dark') : state.settings.theme;
+      el.setAttribute('data-theme', t);
+      document.querySelector('meta[name="theme-color"]')?.setAttribute('content', t === 'light' ? '#fbf4f8' : '#140a12');
+    };
+    apply();
+    mq.addEventListener('change', apply);
+    return () => mq.removeEventListener('change', apply);
   }, [state.settings.theme]);
 
   const runAnalysis = useCallback(

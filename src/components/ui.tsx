@@ -3,12 +3,12 @@ import { ArrowLeft, X, Minus, Plus } from 'lucide-react';
 import { loadImage } from '../lib/images';
 
 export const COLORS = {
-  protein: '#ff6b6b',
-  carbs: '#f5a623',
-  fat: '#4a90e2',
-  fiber: '#9b6bdf',
-  sugar: '#ff7eb6',
-  sodium: '#8a9a94',
+  protein: '#ff5c93',
+  carbs: '#f5b14c',
+  fat: '#5ab8ff',
+  fiber: '#a78bfa',
+  sugar: '#fb923c',
+  sodium: '#2dd4bf',
 };
 
 export function Ring({
@@ -16,7 +16,7 @@ export function Ring({
   max,
   size = 120,
   stroke = 10,
-  color = 'var(--fg)',
+  color = 'var(--accent)',
   track = 'var(--track)',
   children,
 }: {

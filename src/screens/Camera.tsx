@@ -10,6 +10,14 @@ import { uid } from '../lib/date';
 import { Spinner } from '../components/ui';
 import type { FoodEntry } from '../lib/types';
 
+function camMsg(e: any): string {
+  const n = e?.name || '';
+  if (n === 'NotAllowedError' || n === 'SecurityError') return 'No diste permiso para usar la cámara.';
+  if (n === 'NotFoundError' || n === 'OverconstrainedError' || /not found/i.test(e?.message || '')) return 'No se encontró una cámara en este dispositivo.';
+  if (n === 'NotReadableError') return 'La cámara está siendo usada por otra app.';
+  return 'No se pudo abrir la cámara.';
+}
+
 export default function Camera({ nav, mode: initialMode }: { nav: Nav; mode: 'food' | 'barcode' }) {
   const { state } = useStore();
   const [mode, setMode] = useState(initialMode);
@@ -41,7 +49,7 @@ export default function Camera({ nav, mode: initialMode }: { nav: Nav; mode: 'fo
         }
         setCamError(null);
       } catch (e: any) {
-        setCamError(e?.message || 'No se pudo abrir la cámara');
+        setCamError(camMsg(e));
       }
     })();
     return () => {
@@ -62,7 +70,7 @@ export default function Camera({ nav, mode: initialMode }: { nav: Nav; mode: 'fo
         handled.current = true;
         lookup(code);
       },
-      (e: any) => setCamError(e?.message || 'No se pudo abrir la cámara')
+      (e: any) => setCamError(camMsg(e))
     );
     return stop;
     // eslint-disable-next-line react-hooks/exhaustive-deps

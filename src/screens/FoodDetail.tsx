@@ -118,7 +118,19 @@ export default function FoodDetail({ nav, entry: initial, isNew }: { nav: Nav; e
           {e.note && <span className="muted small"> · {e.note}</span>}
         </div>
         <div className="fd-title">
-          <input className="title-input" value={e.name} onChange={(ev) => setE({ ...e, name: ev.target.value })} aria-label="Nombre" />
+          <textarea
+            className="title-input"
+            rows={1}
+            value={e.name}
+            ref={(el) => {
+              if (el) {
+                el.style.height = "auto";
+                el.style.height = el.scrollHeight + "px";
+              }
+            }}
+            onChange={(ev) => setE({ ...e, name: ev.target.value.replace(/\n/g, " ") })}
+            aria-label="Nombre"
+          />
           <Stepper value={e.servings} onChange={(v) => setE({ ...e, servings: v })} />
         </div>
 
@@ -173,7 +185,14 @@ export default function FoodDetail({ nav, entry: initial, isNew }: { nav: Nav; e
           <button
             className="btn small ghost"
             onClick={() => {
-              const ings = [...(e.ingredients || []), { name: 'Ingrediente', amount: '', calories: 0, protein: 0, carbs: 0, fat: 0 }];
+              // si no había desglose, el total actual pasa a ser el primer ingrediente para no perderlo
+              const base: Ingredient[] =
+                e.ingredients && e.ingredients.length
+                  ? e.ingredients
+                  : e.per.calories > 0
+                  ? [{ name: e.name, amount: '1 porción', calories: e.per.calories, protein: e.per.protein, carbs: e.per.carbs, fat: e.per.fat }]
+                  : [];
+              const ings = [...base, { name: 'Ingrediente', amount: '', calories: 0, protein: 0, carbs: 0, fat: 0 }];
               recalcFromIngredients(ings);
               setIngOpen(ings.length - 1);
             }}

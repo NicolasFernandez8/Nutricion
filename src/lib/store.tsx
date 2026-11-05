@@ -27,7 +27,7 @@ export const defaultSettings: Settings = {
   openaiModel: 'llava',
   addBurnedCalories: false,
   rolloverCalories: false,
-  theme: 'system',
+  theme: 'dark',
 };
 
 function initial(): AppState {

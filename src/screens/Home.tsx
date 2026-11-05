@@ -82,7 +82,7 @@ export default function Home({ nav, pending, retry, dismiss, onAdd }: { nav: Nav
             <button key={k} className={'day' + (k === date ? ' active' : '') + (future ? ' future' : '')} onClick={() => !future && nav.setDate(k)}>
               <span>{dayShort(k)}</span>
               <div className={'day-ring' + (has ? ' has' : '')}>
-                <Ring value={t} max={targets.calories} size={34} stroke={3} color={t > targets.calories ? 'var(--danger)' : 'var(--accent)'} track={has ? 'var(--track)' : 'transparent'}>
+                <Ring value={t} max={targets.calories} size={34} stroke={3} color={t > targets.calories ? 'var(--danger)' : 'var(--ok)'} track={has ? 'var(--track)' : 'transparent'}>
                   <b>{fromKey(k).getDate()}</b>
                 </Ring>
               </div>
@@ -108,7 +108,7 @@ export default function Home({ nav, pending, retry, dismiss, onAdd }: { nav: Nav
                   {rollover > 0 && <span>↪ +{rollover} del día anterior</span>}
                 </div>
               </div>
-              <Ring value={eaten.calories} max={goal} size={118} stroke={11} color={left < 0 ? 'var(--danger)' : 'var(--fg)'}>
+              <Ring value={eaten.calories} max={goal} size={118} stroke={11} color={left < 0 ? 'var(--danger)' : 'var(--accent)'}>
                 <Flame size={28} />
               </Ring>
             </div>
@@ -216,7 +216,7 @@ export default function Home({ nav, pending, retry, dismiss, onAdd }: { nav: Nav
                     <small>{hhmm(e.time)}</small>
                   </div>
                   <div className="entry-kcal">
-                    <Flame size={14} /> {e.calories} calorías quemadas
+                    <Flame size={14} /> {e.calories} kcal quemadas
                   </div>
                   <small className="muted">
                     {e.minutes} min · intensidad {e.intensity === 'low' ? 'baja' : e.intensity === 'medium' ? 'media' : 'alta'}
